@@ -246,6 +246,11 @@ export default function AnalysisResult({ data }) {
           align-items: center;
           margin-bottom: 12px;
         }
+        .ingredient-name-wrapper {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+        }
         .ingredient-name {
           font-weight: 800;
           font-size: var(--font-size-lg);
