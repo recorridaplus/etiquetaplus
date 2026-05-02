@@ -74,10 +74,14 @@ export default function AnalysisResult({ data }) {
           <h2 className="section-title">Análisis de Ingredientes</h2>
           <div className="ingredient-counters">
             <div className="counter-badge natural">
-              <Leaf size={14} /> <span>{data.ingredients?.filter(i => i.type === 'natural').length}</span>
+              <Leaf size={14} /> 
+              <span className="counter-label">Naturales:</span>
+              <span className="counter-value">{data.ingredients?.filter(i => i.type === 'natural').length}</span>
             </div>
             <div className="counter-badge synthetic">
-              <FlaskConical size={14} /> <span>{data.ingredients?.filter(i => i.type === 'synthetic').length}</span>
+              <FlaskConical size={14} /> 
+              <span className="counter-label">Sintéticos:</span>
+              <span className="counter-value">{data.ingredients?.filter(i => i.type === 'synthetic').length}</span>
             </div>
           </div>
         </div>
@@ -146,6 +150,45 @@ export default function AnalysisResult({ data }) {
           opacity: 0.9;
           max-width: 500px;
           margin: 0 auto;
+        }
+        .section-header-flex {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 24px;
+          flex-wrap: wrap;
+          gap: 16px;
+        }
+        .ingredient-counters {
+          display: flex;
+          gap: 8px;
+        }
+        .counter-badge {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 12px;
+          border-radius: 8px;
+          font-weight: 700;
+        }
+        .counter-label {
+          opacity: 0.8;
+          font-weight: 600;
+          font-size: 11px;
+          text-transform: uppercase;
+        }
+        .counter-value {
+          font-size: 14px;
+        }
+        .counter-badge.natural {
+          background: rgba(16, 185, 129, 0.1);
+          color: var(--success);
+          border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        .counter-badge.synthetic {
+          background: rgba(245, 158, 11, 0.1);
+          color: var(--warning);
+          border: 1px solid rgba(245, 158, 11, 0.2);
         }
         .unified-results-grid {
           display: grid;
