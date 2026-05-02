@@ -23,6 +23,11 @@ export async function analyzeFoodLabel(imageBase64) {
         {
           "productName": "Nombre del producto",
           "summary": "Descripción objetiva de 1 oración.",
+          "badges": [
+            {"label": "CONTIENE AZÚCAR", "type": "warning"},
+            {"label": "CONTIENE GLUTEN", "type": "warning"},
+            {"label": "ALÉRGENOS", "type": "warning"}
+          ],
           "ingredients": [
             {"name": "Nombre original", "translation": "Función o descripción simple"}
           ],

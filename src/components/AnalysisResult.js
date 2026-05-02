@@ -15,6 +15,22 @@ export default function AnalysisResult({ data }) {
       <section className="summary-section glass">
         <h1 className="product-title">{data.productName || "Producto Analizado"}</h1>
         <p className="product-summary">{data.summary}</p>
+        
+        {data.badges && data.badges.length > 0 && (
+          <div className="badges-wrapper">
+            {data.badges.map((badge, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.2 + idx * 0.1 }}
+                className={`octagon-badge ${badge.type}`}
+              >
+                {badge.label}
+              </motion.div>
+            ))}
+          </div>
+        )}
       </section>
 
       <div className="grid-results">
@@ -93,7 +109,31 @@ export default function AnalysisResult({ data }) {
           font-weight: 500;
           line-height: 1.5;
           max-width: 600px;
-          margin: 0 auto;
+          margin: 0 auto 24px;
+        }
+        .badges-wrapper {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 12px;
+          margin-top: 24px;
+        }
+        .octagon-badge {
+          background: #000;
+          color: #fff;
+          padding: 12px 16px;
+          font-weight: 900;
+          font-size: 14px;
+          text-transform: uppercase;
+          border: 2px solid #fff;
+          clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+          min-width: 110px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          line-height: 1.1;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.5);
         }
         .section-title {
           font-size: var(--font-size-lg);
