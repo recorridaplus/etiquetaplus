@@ -42,13 +42,11 @@ export default function AnalysisResult({ data }) {
 
           {/* Badges (Gluten, Animal, Allergens) */}
           {data.badges?.map((badge, index) => {
-            const Icon = {
-              sugar: Candy,
-              gluten: Wheat,
-              allergens: AlertCircle,
-              animal: Beef,
-              sodium: Waves
-            }[badge.id] || Info;
+            const config = {
+              gluten: { label: 'GLUTEN', icon: Wheat },
+              allergens: { label: 'ALÉRGENOS', icon: AlertCircle },
+              animal: { label: 'DIETA', icon: Beef }
+            }[badge.id] || { label: 'INFO', icon: Info };
 
             return (
               <motion.div
@@ -56,11 +54,11 @@ export default function AnalysisResult({ data }) {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 + (0.1 * index) }}
-                className={`status-card warning badge-style`}
+                className={`status-card info badge-style`}
               >
                 <div className="card-header">
-                  <span className="card-label">{badge.id === 'animal' ? 'DIETA' : 'ADVERTENCIA'}</span>
-                  <Icon size={18} />
+                  <span className="card-label">{config.label}</span>
+                  <config.icon size={18} />
                 </div>
                 <div className="card-body">
                   <span className="card-value">{badge.label}</span>
@@ -176,11 +174,17 @@ export default function AnalysisResult({ data }) {
           background: var(--text-secondary);
           opacity: 0.5;
         }
-        .status-card.alto, .status-card.high, .status-card.warning { 
+        .status-card.alto, .status-card.high { 
           background: rgba(239, 68, 68, 0.08);
           border-color: rgba(239, 68, 68, 0.2);
         }
-        .status-card.alto::before, .status-card.high::before, .status-card.warning::before { background: var(--error); opacity: 1; }
+        .status-card.alto::before, .status-card.high::before { background: var(--error); opacity: 1; }
+
+        .status-card.info {
+          background: rgba(59, 130, 246, 0.08);
+          border-color: rgba(59, 130, 246, 0.2);
+        }
+        .status-card.info::before { background: var(--accent-color); opacity: 1; }
 
         .status-card.medio, .status-card.medium { 
           background: rgba(245, 158, 11, 0.08);

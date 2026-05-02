@@ -25,10 +25,9 @@ export async function analyzeFoodLabel(imageBase64) {
           "productName": "Nombre del producto",
           "summary": "Descripción objetiva de 1 oración.",
           "badges": [
-            {"id": "sugar", "label": "CONTIENE AZÚCAR", "type": "warning"},
-            {"id": "gluten", "label": "CONTIENE GLUTEN", "type": "warning"},
-            {"id": "allergens", "label": "ALÉRGENOS", "type": "warning"},
-            {"id": "animal", "label": "PRODUCTO ANIMAL", "type": "warning"}
+            {"id": "gluten", "label": "CONTIENE GLUTEN", "type": "info"},
+            {"id": "allergens", "label": "ALÉRGENOS", "type": "info"},
+            {"id": "animal", "label": "PRODUCTO ANIMAL", "type": "info"}
           ],
           "ingredients": [
             {"name": "Nombre original", "translation": "Función o descripción simple", "type": "natural|synthetic"}
