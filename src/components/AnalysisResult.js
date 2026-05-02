@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Info, AlertTriangle, CheckCircle2, Leaf, FlaskConical } from "lucide-react";
+import { Info, AlertTriangle, CheckCircle2, Leaf, FlaskConical, Candy, Wheat, AlertCircle, Beef, Waves } from "lucide-react";
 
 export default function AnalysisResult({ data }) {
   if (!data) return null;
@@ -18,17 +18,28 @@ export default function AnalysisResult({ data }) {
         
         {data.badges && data.badges.length > 0 && (
           <div className="badges-wrapper">
-            {data.badges.map((badge, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.2 + idx * 0.1 }}
-                className={`octagon-badge ${badge.type}`}
-              >
-                {badge.label}
-              </motion.div>
-            ))}
+            {data.badges.map((badge, idx) => {
+              const Icon = {
+                sugar: Candy,
+                gluten: Wheat,
+                allergens: AlertCircle,
+                animal: Beef,
+                sodium: Waves
+              }[badge.id] || Info;
+
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.2 + idx * 0.1 }}
+                  className={`octagon-badge ${badge.type}`}
+                >
+                  <Icon size={24} className="badge-icon" />
+                  <span className="badge-label">{badge.label}</span>
+                </motion.div>
+              );
+            })}
           </div>
         )}
       </section>
@@ -140,19 +151,28 @@ export default function AnalysisResult({ data }) {
         .octagon-badge {
           background: #000;
           color: #fff;
-          padding: 12px 16px;
+          padding: 16px;
           font-weight: 900;
-          font-size: 14px;
+          font-size: 11px;
           text-transform: uppercase;
           border: 2px solid #fff;
           clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
-          min-width: 110px;
+          min-width: 100px;
+          aspect-ratio: 1/1;
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
           text-align: center;
           line-height: 1.1;
           box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+          gap: 6px;
+        }
+        .badge-icon {
+          color: var(--accent-color);
+        }
+        .badge-label {
+          max-width: 80px;
         }
         .section-title {
           font-size: var(--font-size-lg);
