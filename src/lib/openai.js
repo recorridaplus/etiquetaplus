@@ -30,13 +30,17 @@ export async function analyzeFoodLabel(imageBase64) {
             {"label": "ALÉRGENOS", "type": "warning"}
           ],
           "ingredients": [
-            {"name": "Nombre original", "translation": "Función o descripción simple"}
+            {"name": "Nombre original", "translation": "Función o descripción simple", "type": "natural|synthetic"}
           ],
           "highlights": [
-            {"label": "Sodio/Azúcar/Grasas", "value": "Cantidad y equivalente en cucharaditas si aplica", "explanation": "Dato objetivo sobre el contenido", "level": "alto|medio|bajo"}
+            {"label": "Sodio/Azúcar/Grasas", "value": "Frase humana (ej: 'No contiene')", "explanation": "Dato técnico (ej: '0mg')", "level": "alto|medio|bajo"}
           ],
           "verdict": "Resumen técnico neutro de los hallazgos principales (sin recomendaciones)."
-        }`
+        }
+        
+        CRITERIO DE INGREDIENTES:
+        - "natural": Ingredientes mínimamente procesados (leche, harina, huevos, vegetales, azúcar mascabado).
+        - "synthetic": Aditivos, colorantes, conservantes, edulcorantes artificiales, saborizantes, grasas trans.`
       },
       {
         role: "user",

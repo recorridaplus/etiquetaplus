@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Info, AlertTriangle, CheckCircle2, ChevronRight } from "lucide-react";
+import { Info, AlertTriangle, CheckCircle2, Leaf, FlaskConical } from "lucide-react";
 
 export default function AnalysisResult({ data }) {
   if (!data) return null;
@@ -59,7 +59,18 @@ export default function AnalysisResult({ data }) {
         </section>
 
         <section className="ingredients-section">
-          <h2 className="section-title">¿Qué contiene realmente?</h2>
+          <div className="section-header-flex">
+            <h2 className="section-title">¿Qué contiene?</h2>
+            <div className="ingredient-counters">
+              <div className="counter-badge natural">
+                <Leaf size={14} /> <span>{data.ingredients?.filter(i => i.type === 'natural').length}</span>
+              </div>
+              <div className="counter-badge synthetic">
+                <FlaskConical size={14} /> <span>{data.ingredients?.filter(i => i.type === 'synthetic').length}</span>
+              </div>
+            </div>
+          </div>
+          
           <div className="ingredients-list">
             {data.ingredients?.map((ing, index) => (
               <motion.div
@@ -67,11 +78,17 @@ export default function AnalysisResult({ data }) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 + index * 0.05 }}
-                className="ingredient-item glass"
+                className={`ingredient-item glass ${ing.type}`}
               >
                 <div className="ingredient-header">
-                  <span className="ingredient-name">{ing.name}</span>
-                  <ChevronRight size={16} className="text-muted" />
+                  <div className="ingredient-name-wrapper">
+                    {ing.type === 'natural' ? (
+                      <Leaf size={18} className="text-success" />
+                    ) : (
+                      <FlaskConical size={18} className="text-warning" />
+                    )}
+                    <span className="ingredient-name">{ing.name}</span>
+                  </div>
                 </div>
                 <p className="ingredient-translation">{ing.translation}</p>
               </motion.div>
@@ -195,6 +212,43 @@ export default function AnalysisResult({ data }) {
           border-radius: 12px;
           margin-top: 8px;
         }
+        .section-header-flex {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 24px;
+        }
+        .ingredient-counters {
+          display: flex;
+          gap: 8px;
+        }
+        .counter-badge {
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          padding: 6px 12px;
+          border-radius: 12px;
+          font-size: 14px;
+          font-weight: 800;
+        }
+        .counter-badge.natural {
+          background: rgba(16, 185, 129, 0.1);
+          color: var(--success);
+          border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        .counter-badge.synthetic {
+          background: rgba(245, 158, 11, 0.1);
+          color: var(--warning);
+          border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        .ingredient-name-wrapper {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+        .text-success { color: var(--success); }
+        .text-warning { color: var(--warning); }
+        
         .ingredients-list {
           display: flex;
           flex-direction: column;
