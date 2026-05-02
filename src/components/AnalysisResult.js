@@ -297,7 +297,7 @@ export default function AnalysisResult({ data }) {
         .ingredient-name {
           font-weight: 800;
           font-size: var(--font-size-lg);
-          color: var(--accent-color);
+          color: var(--text-primary);
         }
         .ingredient-translation {
           font-size: var(--font-size-base);
