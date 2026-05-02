@@ -15,9 +15,10 @@ export async function analyzeFoodLabel(imageBase64) {
         REGLAS CRÍTICAS:
         1. TONO OBJETIVO: No des recomendaciones, sugerencias de consumo ni juicios de valor. Solo describe qué contiene.
         2. ANALOGÍAS DE MEDIDA: Traduce los gramos de azúcar y sal a "cucharaditas" (approx 5g por cucharadita).
-        3. PORCIÓN ESPECÍFICA: Si el dato es "por porción", DEBES especificar de cuánto es la porción según la etiqueta (ej: "Por porción de 30g" o "Por porción de 3 galletas"). Nunca digas solo "por porción".
-        4. SIN TECNICISMOS: Traduce ingredientes complejos a su función simple.
-        5. SELLOS: Explica el motivo del sello de forma neutra.
+        3. SIMPLICIDAD EXTREMA: En el campo "value", usa frases descriptivas en lugar de solo números técnicos cuando sea posible (ej: "No contiene Sodio" en lugar de "0mg", "Muy poca azúcar" en lugar de "1g").
+        4. PORCIÓN ESPECÍFICA: Si el dato es "por porción", DEBES especificar de cuánto es la porción según la etiqueta (ej: "Por porción de 30g").
+        5. SIN TECNICISMOS: Traduce ingredientes complejos a su función simple.
+        6. SELLOS: Explica el motivo del sello de forma neutra.
         
         FORMATO DE SALIDA (JSON ESTRICTO):
         {

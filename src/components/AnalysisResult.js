@@ -49,7 +49,9 @@ export default function AnalysisResult({ data }) {
                 <div className="highlight-info">
                   <span className="highlight-label">{item.label}</span>
                   <span className="highlight-value">{item.value}</span>
-                  <p className="highlight-explanation">{item.explanation}</p>
+                  {item.explanation && !item.value.toLowerCase().includes(item.explanation.toLowerCase().split(' ')[0]) && (
+                    <p className="highlight-explanation">{item.explanation}</p>
+                  )}
                 </div>
               </motion.div>
             ))}
