@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Info, AlertTriangle, CheckCircle2, Leaf, FlaskConical, Candy, Wheat, AlertCircle, Beef, Waves } from "lucide-react";
+import { Info, AlertTriangle, CheckCircle2, Leaf, FlaskConical, Candy, Wheat, AlertCircle, Beef, Waves, Droplets } from "lucide-react";
 
 export default function AnalysisResult({ data }) {
   if (!data) return null;
@@ -18,42 +18,56 @@ export default function AnalysisResult({ data }) {
           <p className="product-summary">{data.summary}</p>
         </div>
 
-        {data.badges && data.badges.length > 0 && (
-          <div className="badges-wrapper">
-            {data.badges.map((badge, idx) => {
-              const Icon = {
-                sugar: Candy,
-                gluten: Wheat,
-                allergens: AlertCircle,
-                animal: Beef,
-                sodium: Waves
-              }[badge.id] || Info;
-
-              return (
-                <motion.div
-                  key={idx}
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.2 + idx * 0.1 }}
-                  className={`octagon-badge ${badge.type}`}
-                >
-                  <Icon size={20} className="badge-icon" />
-                  <span className="badge-label">{badge.label}</span>
-                </motion.div>
-              );
-            })}
-          </div>
-        )}
-
-        <div className="key-highlights-grid">
+        <div className="unified-results-grid">
+          {/* Highlights (Sodium, Sugar, Fats) */}
           {data.highlights?.map((item, index) => (
-            <div key={index} className="key-highlight-item">
-              <div className={`status-pill ${item.level?.toLowerCase()}`}>
-                <span className="pill-label">{item.label}</span>
-                <span className="pill-value">{item.value}</span>
+            <motion.div
+              key={`high-${index}`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 * index }}
+              className={`status-card ${item.level?.toLowerCase()}`}
+            >
+              <div className="card-header">
+                <span className="card-label">{item.label}</span>
+                {item.id === 'sugar' && <Candy size={18} />}
+                {item.id === 'sodium' && <Waves size={18} />}
+                {item.label?.toLowerCase().includes('grasa') && <Droplets size={18} />}
               </div>
-            </div>
+              <div className="card-body">
+                <span className="card-value">{item.value}</span>
+              </div>
+            </motion.div>
           ))}
+
+          {/* Badges (Gluten, Animal, Allergens) */}
+          {data.badges?.map((badge, index) => {
+            const Icon = {
+              sugar: Candy,
+              gluten: Wheat,
+              allergens: AlertCircle,
+              animal: Beef,
+              sodium: Waves
+            }[badge.id] || Info;
+
+            return (
+              <motion.div
+                key={`badge-${index}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 + (0.1 * index) }}
+                className={`status-card warning badge-style`}
+              >
+                <div className="card-header">
+                  <span className="card-label">{badge.id === 'animal' ? 'DIETA' : 'ADVERTENCIA'}</span>
+                  <Icon size={18} />
+                </div>
+                <div className="card-body">
+                  <span className="card-value">{badge.label}</span>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </section>
 
@@ -135,71 +149,72 @@ export default function AnalysisResult({ data }) {
           max-width: 500px;
           margin: 0 auto;
         }
-        .badges-wrapper {
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          gap: 12px;
-        }
-        .octagon-badge {
-          background: #000;
-          color: #fff;
-          padding: 12px;
-          font-weight: 900;
-          font-size: 10px;
-          text-transform: uppercase;
-          border: 2px solid #fff;
-          clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
-          min-width: 90px;
-          aspect-ratio: 1/1;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          line-height: 1;
-          gap: 4px;
-        }
-        .badge-icon {
-          color: var(--accent-color);
-        }
-        
-        .key-highlights-grid {
+        .unified-results-grid {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 12px;
-          margin-top: 8px;
+          gap: 16px;
+          width: 100%;
         }
-        .status-pill {
+        .status-card {
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 24px;
+          padding: 20px 24px;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          position: relative;
+          overflow: hidden;
+        }
+        .status-card::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 6px;
+          background: var(--text-secondary);
+          opacity: 0.5;
+        }
+        .status-card.alto, .status-card.high, .status-card.warning { 
+          background: rgba(239, 68, 68, 0.08);
+          border-color: rgba(239, 68, 68, 0.2);
+        }
+        .status-card.alto::before, .status-card.high::before, .status-card.warning::before { background: var(--error); opacity: 1; }
+
+        .status-card.medio, .status-card.medium { 
+          background: rgba(245, 158, 11, 0.08);
+          border-color: rgba(245, 158, 11, 0.2);
+        }
+        .status-card.medio::before, .status-card.medium::before { background: var(--warning); opacity: 1; }
+
+        .status-card.bajo, .status-card.low { 
+          background: rgba(16, 185, 129, 0.08);
+          border-color: rgba(16, 185, 129, 0.2);
+        }
+        .status-card.bajo::before, .status-card.low::before { background: var(--success); opacity: 1; }
+
+        .badge-style {
+          background: rgba(0, 0, 0, 0.3);
+          border-style: dashed;
+        }
+
+        .card-header {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 16px 24px;
-          border-radius: 20px;
-          background: rgba(255,255,255,0.05);
-          border: 1px solid rgba(255,255,255,0.1);
+          color: var(--text-secondary);
         }
-        .status-pill.alto, .status-pill.high { 
-          border-left: 8px solid var(--error);
-          background: rgba(239, 68, 68, 0.05);
-        }
-        .status-pill.medio, .status-pill.medium { 
-          border-left: 8px solid var(--warning);
-          background: rgba(245, 158, 11, 0.05);
-        }
-        .status-pill.bajo, .status-pill.low { 
-          border-left: 8px solid var(--success);
-          background: rgba(16, 185, 129, 0.05);
-        }
-        .pill-label {
-          font-weight: 700;
-          text-transform: uppercase;
-          font-size: 14px;
-          opacity: 0.7;
-        }
-        .pill-value {
+        .card-label {
+          font-size: 12px;
           font-weight: 800;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+        .card-value {
           font-size: var(--font-size-lg);
+          font-weight: 800;
+          color: var(--text-primary);
         }
 
         .section-title {
