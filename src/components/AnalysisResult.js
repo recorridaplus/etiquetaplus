@@ -209,7 +209,65 @@ export default function AnalysisResult({ data }) {
           border-left: 4px solid var(--accent-color);
           font-weight: 800;
           text-transform: uppercase;
+          color: var(--text-primary);
         }
+
+        .ingredients-list {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+        }
+        .ingredient-item {
+          padding: 24px;
+          border-radius: var(--border-radius-lg);
+        }
+        .ingredient-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 12px;
+        }
+        .ingredient-name {
+          font-weight: 800;
+          font-size: var(--font-size-lg);
+          color: var(--accent-color);
+        }
+        .ingredient-translation {
+          font-size: var(--font-size-base);
+          color: var(--text-primary);
+          line-height: 1.5;
+          opacity: 0.9;
+        }
+
+        .verdict-section {
+          padding: 40px 32px;
+          border: 1px solid var(--glass-border);
+          border-left: 8px solid var(--accent-color);
+          margin-top: 60px;
+          position: relative;
+          z-index: 1;
+        }
+        .verdict-header {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          margin-bottom: 24px;
+        }
+        .verdict-title {
+          font-size: var(--font-size-xl);
+          margin: 0;
+          font-weight: 900;
+          letter-spacing: -0.5px;
+        }
+        .verdict-text {
+          font-size: var(--font-size-lg);
+          line-height: 1.7;
+          color: var(--text-primary);
+        }
+        .text-accent { color: var(--accent-color); }
+        .text-muted { color: var(--text-muted); }
+        .text-success { color: var(--success); }
+        .text-warning { color: var(--warning); }
 
         @media (min-width: 768px) {
           .key-highlights-grid {
