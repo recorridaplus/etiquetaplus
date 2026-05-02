@@ -6,7 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function CameraScanner({ onCapture, isLoading }) {
   const [preview, setPreview] = useState(null);
-  const fileInputRef = useRef(null);
+  const cameraInputRef = useRef(null);
+  const galleryInputRef = useRef(null);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -20,18 +21,24 @@ export default function CameraScanner({ onCapture, isLoading }) {
     }
   };
 
-  const triggerCapture = () => {
-    fileInputRef.current?.click();
-  };
-
   return (
     <div className="scanner-container">
+      {/* Camera Input */}
       <input
         type="file"
         accept="image/*"
         capture="environment"
         onChange={handleFileChange}
-        ref={fileInputRef}
+        ref={cameraInputRef}
+        style={{ display: "none" }}
+      />
+      
+      {/* Gallery Input */}
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handleFileChange}
+        ref={galleryInputRef}
         style={{ display: "none" }}
       />
 
@@ -51,10 +58,10 @@ export default function CameraScanner({ onCapture, isLoading }) {
             <p className="text-secondary">
               Captura una foto clara de los ingredientes o la tabla nutricional.
             </p>
-            <button className="btn-primary" onClick={triggerCapture}>
+            <button className="btn-primary" onClick={() => cameraInputRef.current?.click()}>
               Empezar Escaneo
             </button>
-            <button className="btn-secondary" onClick={() => fileInputRef.current?.click()}>
+            <button className="btn-secondary gallery-btn" onClick={() => galleryInputRef.current?.click()}>
               <Upload size={20} /> Elegir de la galería
             </button>
           </motion.div>
@@ -77,7 +84,7 @@ export default function CameraScanner({ onCapture, isLoading }) {
             
             {!isLoading && (
               <div className="preview-actions">
-                <button className="btn-primary" onClick={triggerCapture}>
+                <button className="btn-primary" onClick={() => cameraInputRef.current?.click()}>
                   Tomar otra foto
                 </button>
               </div>
@@ -149,6 +156,7 @@ export default function CameraScanner({ onCapture, isLoading }) {
           display: flex;
           align-items: center;
           gap: 8px;
+          margin-top: 8px;
         }
         .preview-card {
           overflow: hidden;
