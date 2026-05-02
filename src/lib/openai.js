@@ -14,9 +14,9 @@ export async function analyzeFoodLabel(imageBase64) {
         
         REGLAS CRÍTICAS:
         1. TONO OBJETIVO: No des recomendaciones, sugerencias de consumo ni juicios de valor. Solo describe qué contiene.
-        2. ANALOGÍAS DE MEDIDA: Traduce los gramos de azúcar y sal a "cucharaditas" (approx 5g por cucharadita).
-        3. SIMPLICIDAD EXTREMA: En el campo "value", usa frases descriptivas en lugar de solo números técnicos cuando sea posible (ej: "No contiene Sodio" en lugar de "0mg", "Muy poca azúcar" en lugar de "1g").
-        4. PORCIÓN ESPECÍFICA: Si el dato es "por porción", DEBES especificar de cuánto es la porción según la etiqueta (ej: "Por porción de 30g").
+        2. ANALOGÍAS DE MEDIDA: Traduce los gramos de azúcar y sal a "cucharaditas".
+        3. VALOR PRINCIPAL HUMANO: El campo "value" DEBE ser una frase humana y sencilla (ej: "No contiene Sodio", "Mucha Azúcar", "Grasas Moderadas"). NUNCA pongas solo un número técnico (como "0mg") en el campo "value".
+        4. DATOS TÉCNICOS EN EXPLICACIÓN: Pon los datos técnicos o porciones en el campo "explanation" (ej: "0mg por porción de 30g").
         5. SIN TECNICISMOS: Traduce ingredientes complejos a su función simple.
         6. SELLOS: Explica el motivo del sello de forma neutra.
         
