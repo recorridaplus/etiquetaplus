@@ -17,11 +17,11 @@
   --warning: #f59e0b;
   --error: #ef4444;
 
-  /* Large Typography System */
-  --font-size-base: 20px;
-  --font-size-lg: 24px;
-  --font-size-xl: 32px;
-  --font-size-xxl: 48px;
+  /* Large Typography System (Refined) */
+  --font-size-base: 18px;
+  --font-size-lg: 22px;
+  --font-size-xl: 28px;
+  --font-size-xxl: 40px;
   
   --border-radius-lg: 28px;
   --border-radius-xl: 36px;
