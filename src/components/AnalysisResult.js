@@ -6,6 +6,11 @@ import { Info, AlertTriangle, CheckCircle2, Leaf, FlaskConical, Candy, Wheat, Al
 export default function AnalysisResult({ data }) {
   if (!data) return null;
 
+  const formatSentenceCase = (text) => {
+    if (!text) return '';
+    return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -35,7 +40,7 @@ export default function AnalysisResult({ data }) {
                 {item.label?.toLowerCase().includes('grasa') && <Droplets size={18} />}
               </div>
               <div className="card-body">
-                <span className="card-value">{item.value}</span>
+                <span className="card-value">{formatSentenceCase(item.value)}</span>
               </div>
             </motion.div>
           ))}
@@ -61,7 +66,7 @@ export default function AnalysisResult({ data }) {
                   <config.icon size={18} />
                 </div>
                 <div className="card-body">
-                  <span className="card-value">{badge.label}</span>
+                  <span className="card-value">{formatSentenceCase(badge.label)}</span>
                 </div>
               </motion.div>
             );
