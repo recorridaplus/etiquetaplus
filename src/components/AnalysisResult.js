@@ -132,10 +132,10 @@ export default function AnalysisResult({ data }) {
           padding-bottom: 80px;
         }
         .hero-card {
-          padding: 32px 24px;
+          padding: 24px;
           display: flex;
           flex-direction: column;
-          gap: 32px;
+          gap: 24px;
           background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
           border: 1px solid rgba(255, 255, 255, 0.15);
         }
@@ -143,16 +143,16 @@ export default function AnalysisResult({ data }) {
           text-align: center;
         }
         .product-title {
-          font-size: var(--font-size-xl);
-          margin-bottom: 12px;
+          font-size: var(--font-size-lg);
+          margin-bottom: 8px;
           color: var(--accent-color);
-          letter-spacing: -1px;
+          letter-spacing: -0.5px;
         }
         .product-summary {
-          font-size: var(--font-size-lg);
+          font-size: var(--font-size-base);
           font-weight: 500;
           line-height: 1.5;
-          opacity: 0.9;
+          opacity: 0.8;
           max-width: 500px;
           margin: 0 auto;
         }
