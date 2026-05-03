@@ -320,6 +320,7 @@ export default function AnalysisResult({ data }) {
           padding: 40px 32px;
           border: 1px solid var(--glass-border);
           border-left: 8px solid var(--accent-color);
+          margin: 40px 0;
           position: relative;
           z-index: 1;
         }
