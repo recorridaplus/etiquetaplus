@@ -79,14 +79,14 @@ export default function Home() {
       <header className="app-header">
         <div className="logo-section" onClick={resetScanner} style={{ cursor: 'pointer' }}>
           <div className="logo-icon">
-            <Sparkles size={24} fill="currentColor" />
+            <Sparkles size={18} fill="currentColor" />
           </div>
           <h1 className="logo-text">Etiqueta<span>+</span></h1>
         </div>
         <div className="header-actions" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
           {analysisData && (
             <button className="btn-secondary header-btn" onClick={resetScanner} style={{ padding: '8px 16px', fontSize: '14px' }}>
-              Nuevo
+              Nueva etiqueta
             </button>
           )}
           <button 
@@ -201,14 +201,14 @@ export default function Home() {
         .logo-icon {
           background: var(--accent-color);
           color: white;
-          padding: 8px;
-          border-radius: 12px;
+          padding: 6px;
+          border-radius: 8px;
           display: flex;
         }
         .logo-text {
-          font-size: 28px;
+          font-size: 20px;
           font-weight: 800;
-          letter-spacing: -0.5px;
+          letter-spacing: -0.2px;
         }
         .logo-text span {
           color: var(--accent-color);
