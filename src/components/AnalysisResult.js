@@ -98,7 +98,7 @@ export default function AnalysisResult({ data }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 + index * 0.05 }}
-              className={`ingredient-item glass ${ing.type}`}
+              className={`ingredient-item ${ing.type}`}
             >
               <div className="ingredient-header">
                 <div className="ingredient-name-wrapper">
@@ -138,6 +138,7 @@ export default function AnalysisResult({ data }) {
           gap: 24px;
           background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
           border: 1px solid rgba(255, 255, 255, 0.15);
+          margin-bottom: 48px;
         }
         .hero-header {
           text-align: center;
@@ -285,8 +286,12 @@ export default function AnalysisResult({ data }) {
           gap: 16px;
         }
         .ingredient-item {
-          padding: 24px;
-          border-radius: var(--border-radius-lg);
+          padding: 16px 0;
+          border-bottom: 1px solid var(--glass-border);
+          border-radius: 0;
+        }
+        .ingredient-item:last-child {
+          border-bottom: none;
         }
         .ingredient-header {
           display: flex;
@@ -315,7 +320,6 @@ export default function AnalysisResult({ data }) {
           padding: 40px 32px;
           border: 1px solid var(--glass-border);
           border-left: 8px solid var(--accent-color);
-          margin-top: 60px;
           position: relative;
           z-index: 1;
         }
