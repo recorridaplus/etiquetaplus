@@ -128,7 +128,7 @@ export default function AnalysisResult({ data }) {
         .results-wrapper {
           display: flex;
           flex-direction: column;
-          gap: 32px;
+          gap: 64px;
           padding-bottom: 80px;
         }
         .hero-card {

@@ -83,12 +83,19 @@ export default function Home() {
           </div>
           <h1 className="logo-text">Etiqueta<span>+</span></h1>
         </div>
-        <button 
-          className={`btn-icon ${showHistory ? 'active' : ''}`} 
-          onClick={() => setShowHistory(!showHistory)}
-        >
-          {showHistory ? <X size={24} /> : <History size={24} />}
-        </button>
+        <div className="header-actions" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+          {analysisData && (
+            <button className="btn-secondary header-btn" onClick={resetScanner} style={{ padding: '8px 16px', fontSize: '14px' }}>
+              Nuevo
+            </button>
+          )}
+          <button 
+            className={`btn-icon ${showHistory ? 'active' : ''}`} 
+            onClick={() => setShowHistory(!showHistory)}
+          >
+            {showHistory ? <X size={24} /> : <History size={24} />}
+          </button>
+        </div>
       </header>
 
       <div className="content-scroll">
@@ -165,11 +172,6 @@ export default function Home() {
               animate={{ opacity: 1, x: 0 }}
               className="results-container"
             >
-              <div className="sticky-actions">
-                <button className="btn-secondary blur-bg" onClick={resetScanner}>
-                  <ChevronLeft size={20} /> Nuevo Escaneo
-                </button>
-              </div>
               <AnalysisResult data={analysisData} />
             </motion.div>
           )}
