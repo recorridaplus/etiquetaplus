@@ -4,8 +4,26 @@
   "description": "Tu intérprete de alimentos con IA",
   "start_url": "/",
   "display": "standalone",
+  "id": "/?source=pwa",
+  "orientation": "portrait",
   "background_color": "#050505",
   "theme_color": "#050505",
+  "screenshots": [
+    {
+      "src": "/maskable_icon_x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Escáner de etiquetas"
+    },
+    {
+      "src": "/maskable_icon_x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Escáner de etiquetas"
+    }
+  ],
   "icons": [
     {
       "src": "/maskable_icon_x192.png",
