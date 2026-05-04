@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CameraScanner from "@/components/CameraScanner";
 import AnalysisResult from "@/components/AnalysisResult";
-import { Sparkles, History, Info, X, ChevronLeft, Trash2 } from "lucide-react";
+import { ScanSearch, History, Info, X, ChevronLeft, Trash2 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { saveScan, getHistory, clearHistory } from "@/lib/storage";
 import { compressImage } from "@/lib/image";
@@ -79,7 +79,7 @@ export default function Home() {
       <header className="app-header">
         <div className="logo-section" onClick={resetScanner} style={{ cursor: 'pointer' }}>
           <div className="logo-icon">
-            <Sparkles size={18} fill="currentColor" />
+            <ScanSearch size={18} fill="none" strokeWidth={2.5} />
           </div>
           <h1 className="logo-text">Etiqueta<span>+</span></h1>
         </div>
