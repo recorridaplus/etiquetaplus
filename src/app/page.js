@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CameraScanner from "@/components/CameraScanner";
 import AnalysisResult from "@/components/AnalysisResult";
-import { ScanSearch, History, Info, X, ChevronLeft, Trash2 } from "lucide-react";
+import { History, Info, X, ChevronLeft, Trash2 } from "lucide-react";
 import confetti from "canvas-confetti";
 import { saveScan, getHistory, clearHistory } from "@/lib/storage";
 import { compressImage } from "@/lib/image";
@@ -78,9 +78,7 @@ export default function Home() {
     <main className="app-container">
       <header className="app-header">
         <div className="logo-section" onClick={resetScanner} style={{ cursor: 'pointer' }}>
-          <div className="logo-icon">
-            <ScanSearch size={18} fill="none" strokeWidth={2.5} />
-          </div>
+          <img src="/icon.png" alt="Etiqueta+ Logo" className="app-logo-img" />
           <h1 className="logo-text">Etiqueta<span>+</span></h1>
         </div>
         <div className="header-actions" style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
@@ -198,12 +196,11 @@ export default function Home() {
           align-items: center;
           gap: 12px;
         }
-        .logo-icon {
-          background: var(--accent-color);
-          color: white;
-          padding: 6px;
+        .app-logo-img {
+          width: 32px;
+          height: 32px;
           border-radius: 8px;
-          display: flex;
+          object-fit: cover;
         }
         .logo-text {
           font-size: 20px;
