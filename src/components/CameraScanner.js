@@ -51,7 +51,7 @@ export default function CameraScanner({ onCapture, isLoading }) {
             exit={{ opacity: 0, scale: 0.95 }}
             className="capture-card glass"
           >
-            <div className="icon-wrapper">
+            <div className="icon-wrapper" onClick={() => cameraInputRef.current?.click()} style={{ cursor: 'pointer' }}>
               <Camera size={48} className="icon-main" />
             </div>
             <h2 className="title-large">Escanea tu alimento</h2>
@@ -117,8 +117,14 @@ export default function CameraScanner({ onCapture, isLoading }) {
           justify-content: center;
           margin-bottom: 12px;
           animation: pulse-glow 2s infinite;
+          cursor: pointer;
+          transition: transform 0.2s ease;
+        }
+        .icon-wrapper:active {
+          transform: scale(0.95);
         }
         .icon-main {
+
           color: var(--accent-color);
         }
         .title-large {
