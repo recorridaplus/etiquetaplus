@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CameraScanner from "@/components/CameraScanner";
@@ -176,7 +177,26 @@ export default function Home() {
         </AnimatePresence>
       </div>
 
+      <footer className="app-footer">
+        <Link href="/privacidad" className="footer-link">Política de Privacidad</Link>
+      </footer>
+
       <style jsx>{`
+        .app-footer {
+          padding: 24px 0 40px 0;
+          display: flex;
+          justify-content: center;
+          opacity: 0.6;
+        }
+        .footer-link {
+          color: var(--text-secondary);
+          text-decoration: none;
+          font-size: 14px;
+          transition: color 0.2s;
+        }
+        .footer-link:hover {
+          color: var(--accent-color);
+        }
         .app-container {
           min-height: 100vh;
           display: flex;
