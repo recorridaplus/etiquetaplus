@@ -65,7 +65,7 @@ export default function PrivacyPolicy() {
           <section>
             <h3>7. Contacto</h3>
             <p>
-              Si tienes alguna pregunta sobre esta Política de Privacidad, puedes contactarnos a través de los canales oficiales de Concreta.
+              Si tienes alguna pregunta sobre esta Política de Privacidad, puedes contactarnos a través de los canales oficiales de la Aplicación.
             </p>
           </section>
         </div>
