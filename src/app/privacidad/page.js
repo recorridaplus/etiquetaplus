@@ -2,11 +2,6 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
-export const metadata = {
-  title: "Política de Privacidad | Etiqueta+",
-  description: "Política de privacidad de la aplicación Etiqueta+.",
-};
-
 export default function PrivacyPolicy() {
   return (
     <main className="app-container">
